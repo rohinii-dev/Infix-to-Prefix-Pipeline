@@ -16,20 +16,20 @@ def infix_to_postfix(exp):
         if ch.isalnum():
             postfix+=ch
 
-        elif ch == '(':
+        elif ch == "(":
             stack.append(ch)
 
-        elif ch == ')':
-            while stack and stack[-1] != '(':
+        elif ch == ")":
+            while stack and stack[-1] != "(":
                 postfix+=stack.pop()
             stack.pop()
 
         else:
-            while stack and stack[-1] != '(' and precedence(stack[-1]) > precedence(ch):
+            while stack and stack[-1] != "(" and precedence(stack[-1]) > precedence(ch):
                 postfix+=stack.pop()
             stack.append(ch)
 
-    while stack:
+    while stack!=[]:
         postfix+=stack.pop()
 
     return postfix
@@ -37,9 +37,9 @@ def infix_to_postfix(exp):
 
 def infix_to_prefix(exp):
     exp=exp[::-1]
-    exp=exp.replace('(', '#')
-    exp=exp.replace(')', '(')
-    exp=exp.replace('#', ')')
+    exp=exp.replace("(", "#")
+    exp=exp.replace(")", "(")
+    exp=exp.replace("#", ")")
 
     postfix=infix_to_postfix(exp)
 
